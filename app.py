@@ -5,11 +5,11 @@ app = Flask(__name__, template_folder='client', static_folder='static')
 
 @app.route('/')
 def home():
-    return render_template('index.html', title='Home', message='lol')
+    return render_template('index.html', title='Home', message='lol', nav=True)
 
 @app.route('/login')
 def login():
-    return render_template('auth/login.html', title='Login')
+    return render_template('auth/login.html', title='Login', nav=True)
 
 @app.route('/favicon.ico')
 def favicon():
