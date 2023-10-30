@@ -1,16 +1,28 @@
 {% extends './layout.html' %}
 
 {% block body %}
-<form class="px-4 py-3" method="post">
+<form class="px-4 py-3" method="post" autocomplete="off">
     <h1>Login</h1>
-    <br/>
+    <br />
+    {% with msg = get_flashed_messages() %}
+    {% if msg %}
+    {% for i in msg %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ i }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
     <div class="mb-3">
         <label for="exampleDropdownFormEmail1" class="form-label">Email address</label>
-        <input type="email" name="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+        <input type="email" name="email" class="form-control" id="exampleDropdownFormEmail1"
+            placeholder="email@example.com">
     </div>
     <div class="mb-3">
         <label for="exampleDropdownFormPassword1" class="form-label">Password</label>
-        <input type="password" name="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+        <input type="password" name="password" class="form-control" id="exampleDropdownFormPassword1"
+            placeholder="Password">
     </div>
     <button type="submit" class="btn btn-primary">Sign in</button>
 </form>
