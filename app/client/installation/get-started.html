@@ -2,7 +2,13 @@
 
 {% block body %}
 <form class="px-4 py-3" method="post" autocomplete="off">
-    <h1>Login</h1>
+    <h1>Get Started</h1>
+    <hr />
+    <h6>Welcome to the get started initialze process ! Just fill in the information below and get started.</h6>
+    <br />
+    <h1>Information needed</h1>
+    <hr />
+    <h6>Please provide the following information.</h6>
     <br />
     {% with messages = get_flashed_messages(with_categories=true) %} 
     {% if messages %} 
@@ -22,15 +28,21 @@
     {% endif %} 
     {% endwith %}
     <div class="mb-3">
-        <label for="exampleDropdownFormEmail1" class="form-label">Email address</label>
+        <label for="exampleDropdownFormEmail1" class="form-label">Email address:</label>
         <input type="email" name="email" class="form-control" id="exampleDropdownFormEmail1"
-            placeholder="email@example.com">
+            placeholder="email@example.com" required>
     </div>
     <div class="mb-3">
-        <label for="exampleDropdownFormPassword1" class="form-label">Password</label>
+        <label for="exampleDropdownFormPassword1" class="form-label">Password:</label>
         <input type="password" name="password" class="form-control" id="exampleDropdownFormPassword1"
-            placeholder="Password">
+            placeholder="Password" required>
     </div>
-    <button type="submit" class="btn btn-primary">Sign in</button>
+    <div class="mb-3">
+        <label for="exampleDropdownFormPassword2" class="form-label">Comfirm Password:</label>
+        <input type="password" name="password2" class="form-control" id="exampleDropdownFormPassword2"
+            placeholder="Comfirm Password" required>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Continue</button>
 </form>
 {% endblock %}

@@ -10,5 +10,7 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
         if email != 'jle26531@gmail.com' and password != '0709':
-            flash('Incorect Password and Username !')
+            flash('Incorect Password and Username !', category='error')
+        else:
+            flash('Successfully', category='success')
     return render_template('auth/login.html', title='Login', nav=True)

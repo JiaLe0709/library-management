@@ -9,4 +9,4 @@ itsdangerous==2.1.2
 psycopg2==2.9.9
 python-dotenv==1.0.0
 SQLAlchemy==2.0.22
-Werkzeug==3.0.1
+Werkzeug==2.3.0
