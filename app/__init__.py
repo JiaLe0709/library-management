@@ -1,6 +1,8 @@
 from flask import Flask
+from flask_login import LoginManager
 from dotenv import load_dotenv
 from .database import db 
+from .models import User
 from .get_started import init
 from .auth import auth
 from .root import root
@@ -18,7 +20,16 @@ def create_app():
     
     db.init_app(app)
 
+    login_manager = LoginManager()
+    login_manager.login_view = 'auth.login'
+    login_manager.init_app(app)
+
     with app.app_context():
         db.create_all()
+
+    @login_manager.user_loader
+    def load_user(id):
+        return User.query.get(int(id))
+    
     
     return app

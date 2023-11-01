@@ -1,12 +1,13 @@
 from flask import render_template, send_from_directory, redirect, url_for, Blueprint
-from utils.auth_function import login_is_required
+from flask_login import login_required, current_user
 from utils.init_function import init_process
 import os
 
 root = Blueprint('root', __name__, template_folder='client', static_folder='static')
 
-@root.route('/')
+@root.route('/', endpoint='home')
 @init_process
+@login_required
 def home():
     return render_template('index.html', title='Home', nav=True)
 

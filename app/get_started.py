@@ -23,6 +23,7 @@ def get_started():
                 db.session.add(new_user)
                 db.session.commit()
                 flash('Account Created Successfully !', category='success')
+                return redirect(url_for('root.home'))
             except:
                 flash('Failed to Create an account !', category='error')
     return render_template('installation/get-started.html', title='Get Started')
