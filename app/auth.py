@@ -28,6 +28,7 @@ def login():
     return render_template('auth/login.html', title='Login', nav=True)
 
 @auth.route('/logout', endpoint='logout')
+@init_process
 @login_required
 def logout():
     logout_user()

@@ -6,6 +6,7 @@ from .models import User
 from .get_started import init
 from .auth import auth
 from .root import root
+from .member import member
 import os
 
 load_dotenv()
@@ -14,10 +15,12 @@ def create_app():
     app = Flask(__name__, template_folder='client', static_folder='static')
     app.config['SECRET_KEY'] = os.urandom(32)
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DB')
+
     app.register_blueprint(init, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(root, url_prefix='/')
-    
+    app.register_blueprint(member, url_prefix='/member/')
+
     db.init_app(app)
 
     login_manager = LoginManager()

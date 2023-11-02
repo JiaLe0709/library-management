@@ -19,11 +19,11 @@ def get_started():
         else:
             final_password = password
             try:
-                new_user = User(email=email, password=generate_password_hash(password, method='pbkdf2', salt_length=16))
+                new_user = User(email=email, password=generate_password_hash(final_password, method='pbkdf2', salt_length=16))
                 db.session.add(new_user)
                 db.session.commit()
                 flash('Account Created Successfully !', category='success')
                 return redirect(url_for('root.home'))
             except:
                 flash('Failed to Create an account !', category='error')
-    return render_template('installation/get-started.html', title='Get Started')
+    return render_template('installation/get-started.html', title='Get Started', nav=True)

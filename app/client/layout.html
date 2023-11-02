@@ -14,7 +14,8 @@
   {% if nav %}
   <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Offcanvas dark navbar</a>
+      <a class="navbar-brand" href="{{ url_for('root.home') }}">Dashboard</a>
+      {% if current_user.is_authenticated %}
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
         aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -49,6 +50,9 @@
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+            </li>
           </ul>
           <form class="d-flex mt-3" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -56,6 +60,7 @@
           </form>
         </div>
       </div>
+      {% endif %}
     </div>
   </nav>
   {% endif %}

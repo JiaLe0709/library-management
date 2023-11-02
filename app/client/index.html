@@ -1,7 +1,8 @@
 {% include 'layout.html' %}
 
 {% block body %}
-{% with messages = get_flashed_messages(with_categories=true) %} 
+<div class="px-4 py-3">
+  {% with messages = get_flashed_messages(with_categories=true) %} 
 {% if messages %} 
 {% for category, message in messages %} 
 {% if category == 'error' %}
@@ -30,4 +31,6 @@
     </ul>
   </div>
 aa
+</div>
+
 {% endblock %}
