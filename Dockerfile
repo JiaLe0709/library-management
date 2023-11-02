@@ -1,6 +1,11 @@
-FROM python:3.12
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
-COPY . /app
+FROM python:3.8
+
 WORKDIR /app
-CMD [ "gunicorn", "--chdir", "app", "app:app", "-w", "2", "--threads", "2", "-b", "0.0.0.0:5000"]
+
+COPY . /app
+
+RUN pip install -r requirements.txt
+
+EXPOSE 5000
+
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "app:create_app()"]

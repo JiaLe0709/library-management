@@ -1,5 +1,5 @@
 from flask import render_template, send_from_directory, redirect, url_for, Blueprint
-from flask_login import login_required, current_user
+from flask_login import login_required
 from utils.init_function import init_process
 import os
 
