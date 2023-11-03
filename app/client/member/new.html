@@ -34,11 +34,10 @@
     </div>
     <div class="mb-3">
         <label for="name" class="form-label">Gender: </label>
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">Male</option>
-            <option value="2">Female</option>
-            <option value="3">-</option>
+        <select name="gender" class="form-select" aria-label="Default select example">
+             {% for o in gender %}
+              <option value="{{ o.name }}">{{ o.name }}</option>
+              {% endfor %}
           </select>
     </div>
     <div class="mb-3">

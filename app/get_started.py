@@ -11,6 +11,7 @@ init = Blueprint('init', __name__, template_folder='client', static_folder='stat
 def get_started():
     if request.method == 'POST':
         email = request.form.get('email')
+        username = request.form.get('name')
         password = request.form.get('password')
         password2 = request.form.get('password2')
 
@@ -19,7 +20,7 @@ def get_started():
         else:
             final_password = password
             try:
-                new_user = User(email=email, password=generate_password_hash(final_password, method='pbkdf2', salt_length=16))
+                new_user = User(email=email, username=username ,password=generate_password_hash(final_password, method='pbkdf2', salt_length=16))
                 db.session.add(new_user)
                 db.session.commit()
                 flash('Account Created Successfully !', category='success')
