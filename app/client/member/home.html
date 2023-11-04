@@ -22,7 +22,7 @@
   {% endif %}
   {% endwith %}
   {% if not member %}
-    <h5>No member found, <a href="{{  url_for('member.new_member') }}">Create a new member ?</a></h5>
+  <h5>No member found, <a href="{{  url_for('member.new_member') }}">Create a new member ?</a></h5>
   {% else %}
   <table class="table table-striped table-bordered">
     <thead>
@@ -30,20 +30,22 @@
         <th scope="col">Name</th>
         <th scope="col">Category & Class</th>
         <th scope="col">Card Number</th>
-        <th scope="col">Delete Member</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
       {% for i in member %}
       <tr>
-        <td>{{ i.name }}</td>
+        <td>{{ i.name }} ({{ i.gender }})</td>
         <td>{{ i.category }}</td>
         <td>{{ i.card_number }}</td>
         <td>
           <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Delete
           </button>
-          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <a href="{{ url_for('member.update_member', member_id=i.id) }}" type="submit" class="btn btn-primary">Update</a>
+          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
