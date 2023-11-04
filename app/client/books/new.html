@@ -2,9 +2,9 @@
 
 {% block body %}
 <form class="px-4 py-3" method="post" autocomplete="off">
-    <h1>Update Member</h1>
+    <h1>Register New Member</h1>
     <hr />
-    <h6>Update the information below and finish.</h6>
+    <h6>Just fill in the information below and finished.</h6>
     <br />
     <h1>Information needed</h1>
     <hr />
@@ -30,28 +30,27 @@
     <div class="mb-3">
         <label for="name" class="form-label">Name:</label>
         <input type="text" name="name" class="form-control" id="name"
-            placeholder="John" value="{{ member.name }}" required>
+            placeholder="John" required>
     </div>
     <div class="mb-3">
         <label for="name" class="form-label">Gender: </label>
         <select name="gender" class="form-select" aria-label="Default select example">
-            {% for o in gender %}
-                <option value="{{ o.name }}" {% if o.name == member.gender %} selected {% endif %}>{{ o.name }}</option>
-            {% endfor %}
-        </select>
+             {% for o in gender %}
+              <option value="{{ o.name }}">{{ o.name }}</option>
+              {% endfor %}
+          </select>
     </div>
     <div class="mb-3">
         <label for="category" class="form-label">Class / Category:</label>
         <input type="text" name="category" class="form-control" id="category"
-            placeholder="Class & Category" value="{{ member.category }}" required>
+            placeholder="Class & Category" required>
     </div>
     <div class="mb-3">
         <label for="ic" class="form-label">Member Number:</label>
         <input type="text" name="ic" class="form-control" id="ic"
-            placeholder="Library Card Num. & Member Num." value="{{ member.card_number }}" required>
+            placeholder="Library Card Num. & Member Num." required>
     </div>
     <br />
-    <a class="btn btn-danger" href="{{ url_for('member.home') }}" >Cancel</a>
-    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-primary">Continue</button>
 </form>
 {% endblock %}

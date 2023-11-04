@@ -7,6 +7,7 @@ from .get_started import init
 from .auth import auth
 from .root import root
 from .member import member
+from .books import books
 import os
 
 load_dotenv()
@@ -19,7 +20,8 @@ def create_app():
     app.register_blueprint(init, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(root, url_prefix='/')
-    app.register_blueprint(member, url_prefix='/member/')
+    app.register_blueprint(member, url_prefix='/member')
+    app.register_blueprint(books, url_prefix='/books')
 
     db.init_app(app)
 
