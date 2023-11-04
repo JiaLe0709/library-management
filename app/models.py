@@ -12,4 +12,4 @@ class Member(db.Model):
     name = db.Column(db.String(150))
     gender = db.Column(db.String(150))
     category = db.Column(db.String(150))
-    card_number = db.Column(db.Integer, unique=True)
+    card_number = db.Column(db.String(150), unique=True)
