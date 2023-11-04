@@ -3,6 +3,7 @@
 {% block body %}
 <div class="px-4 py-3">
   <h1>Member</h1>
+  <hr />
   {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
   {% for category, message in messages %}
@@ -20,10 +21,12 @@
   {% endfor %}
   {% endif %}
   {% endwith %}
-  <table class="table">
+  {% if not member %}
+    <h5>No member found, <a href="{{  url_for('member.new_member') }}">Create a new member ?</a></h5>
+  {% else %}
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th scope="col">Id</th>
         <th scope="col">Name</th>
         <th scope="col">Category & Class</th>
         <th scope="col">Card Number</th>
@@ -33,18 +36,37 @@
     <tbody>
       {% for i in member %}
       <tr>
-        <td>{{ i.id }}</td>
         <td>{{ i.name }}</td>
         <td>{{ i.category }}</td>
         <td>{{ i.card_number }}</td>
         <td>
-          <form method="POST" action="{{ url_for('member.delete_member', member_id=i.id) }}">
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Delete
+          </button>
+          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Member</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to delete <strong class="text-danger">{{ i.name }}</strong> ?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <form method="POST" action="{{ url_for('member.delete_member', member_id=i.id) }}">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
+  {% endif %}
 </div>
 {% endblock %}
