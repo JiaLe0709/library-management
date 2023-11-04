@@ -10,9 +10,9 @@
     <hr />
     <h6>Please provide the following information.</h6>
     <br />
-    {% with messages = get_flashed_messages(with_categories=true) %} 
-    {% if messages %} 
-    {% for category, message in messages %} 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
     {% if category == 'error' %}
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         {{ message }}
@@ -24,33 +24,40 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     {% endif %}
-    {% endfor %} 
-    {% endif %} 
+    {% endfor %}
+    {% endif %}
     {% endwith %}
     <div class="mb-3">
         <label for="name" class="form-label">Name:</label>
-        <input type="text" name="name" class="form-control" id="name"
-            placeholder="John" required>
+        <input type="text" name="name" class="form-control" id="name" placeholder="John" required>
     </div>
     <div class="mb-3">
         <label for="name" class="form-label">Gender: </label>
         <select name="gender" class="form-select" aria-label="Default select example">
-             {% for o in gender %}
-              <option value="{{ o.name }}">{{ o.name }}</option>
-              {% endfor %}
-          </select>
+            {% for o in gender %}
+            <option value="{{ o.name }}">{{ o.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Dewey: </label>
+        <select name="dewey" class="form-select" aria-label="Default select example">
+            {% for i in dewey %}
+            <option value="{{ i.classes }}">{{ i.classes }} - {{ i.details }}</option>
+            {% endfor %}
+        </select>
     </div>
     <div class="mb-3">
         <label for="category" class="form-label">Class / Category:</label>
-        <input type="text" name="category" class="form-control" id="category"
-            placeholder="Class & Category" required>
+        <input type="text" name="category" class="form-control" id="category" placeholder="Class & Category" required>
     </div>
     <div class="mb-3">
         <label for="ic" class="form-label">Member Number:</label>
-        <input type="text" name="ic" class="form-control" id="ic"
-            placeholder="Library Card Num. & Member Num." required>
+        <input type="text" name="ic" class="form-control" id="ic" placeholder="Library Card Num. & Member Num."
+            required>
     </div>
     <br />
     <button type="submit" class="btn btn-primary">Continue</button>
 </form>
+
 {% endblock %}
