@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request
-import json
+from utils.currency import currency as cr
+from utils.dewey import dewey as dw
+from utils.lang import lang as lg
 
 books = Blueprint("books", __name__, template_folder="client", static_folder="static")
 
@@ -24,16 +26,7 @@ def new_books():
         sources = request.form.get("sources")
         sources_info = request.form.get("sources_info")
         
-    with open("dewey.json") as json_file:
-        dewey_file = json.load(json_file)
-
-    with open("currency.json") as currency_file:
-        currency_data = json.load(currency_file)
-        
-    with open("language.json") as lang_file:
-        lang_data = json.load(lang_file)
-
     source = [{"name": "Donations"}, {"name": "Purchasing"}, {"name": "Other"}]
     
     return render_template(
-        "books/new.html", title="Books", dewey=dewey_file, currency_=currency_data, source=source, langs=lang_data)
+        "books/new.html", title="Books", dewey=dw, currency_=cr, source=source, langs=lg)

@@ -1,4 +1,4 @@
-[
+currency = [
 	{
 		"symbol": "-",
 		"name": "-",
