@@ -28,4 +28,5 @@ class Books(db.Model):
     currency = db.Column(db.String(150))
     price = db.Column(db.Float(50))
     sources = db.Column(db.String(150))
+    sources_info = db.Column(db.String(150))
     

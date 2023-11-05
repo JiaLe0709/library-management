@@ -13,17 +13,31 @@ def new_books():
         title = request.form.get('title')
         author = request.form.get('title')
         isbn = request.form.get('title')
-        dewey = request.form.get('title')
+        dewey = request.form.get('dewey')
         category = request.form.get('title')
         num_pages = request.form.get('title')
         published_year = request.form.get('title')
         publisher = request.form.get('title')
         barcode = request.form.get('title')
-        currency = request.form.get('title')
-        price = request.form.get('title')
-        sources = request.form.get('title')
+        currency = request.form.get('currency')
+        price = request.form.get('price')
+        sources = request.form.get('sources')
         
     with open('dewey.json') as json_file:
         dewey_file = json.load(json_file)
         
-    return render_template('books/new.html', title='Books', dewey=dewey_file)
+    with open('currency.json') as currency_file:
+        currency_data = json.load(currency_file)
+        
+    source = [
+        {
+        'name': 'Donations'
+        },
+        {
+        'name': 'Purchasing'
+        },
+        {
+        'name': 'Other'
+        }
+        ]
+    return render_template('books/new.html', title='Books', dewey=dewey_file, currency_=currency_data, source=source)

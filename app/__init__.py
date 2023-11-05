@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_login import LoginManager
+from flask_minify import Minify
 from dotenv import load_dotenv
 from .database import db 
 from .models import User
@@ -36,5 +37,6 @@ def create_app():
     def load_user(id):
         return User.query.get(int(id))
     
+    Minify(app=app, html=True, js=True, cssless=True)
     
     return app

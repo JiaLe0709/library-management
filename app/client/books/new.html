@@ -6,10 +6,6 @@
     <hr />
     <h6>Just fill in the information below and finished.</h6>
     <br />
-    <h1>Information needed</h1>
-    <hr />
-    <h6>Please provide the following information.</h6>
-    <br />
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
     {% for category, message in messages %}
@@ -28,20 +24,12 @@
     {% endif %}
     {% endwith %}
     <div class="mb-3">
-        <label for="name" class="form-label">Name:</label>
-        <input type="text" name="name" class="form-control" id="name" placeholder="John" required>
+        <label for="title" class="form-label">Title:</label>
+        <input type="text" name="name" class="form-control" id="title" placeholder="Books Title" required>
     </div>
     <div class="mb-3">
-        <label for="name" class="form-label">Gender: </label>
-        <select name="gender" class="form-select" aria-label="Default select example">
-            {% for o in gender %}
-            <option value="{{ o.name }}">{{ o.name }}</option>
-            {% endfor %}
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="name" class="form-label">Dewey: </label>
-        <select name="dewey" class="form-select" aria-label="Default select example">
+        <label for="dewey" class="form-label">Dewey: </label>
+        <select name="dewey" class="form-select" id="dewey" aria-label="Dewey Decimal Classification">
             {% for i in dewey %}
             <option value="{{ i.classes }}">{{ i.classes }} - {{ i.details }}</option>
             {% endfor %}
@@ -51,13 +39,27 @@
         <label for="category" class="form-label">Class / Category:</label>
         <input type="text" name="category" class="form-control" id="category" placeholder="Class & Category" required>
     </div>
+
+    <label for="Currency" class="form-label">Prices (If don't have put '-'):</label>
+    <div class="input-group mb-3">
+        <select name="currency" class="form-select form-control" id="Currency" aria-label="Currency">
+            {% for i in currency_ %}
+            <option value="{{ i.symbol }}">{{ i.name }} - {{ i.symbol_native }}</option>
+            {% endfor %}
+        </select>
+        <span class="input-group-text"> </span>
+        <input type="text" name="price" class="form-control" placeholder="Price" aria-label="Price">
+    </div>
     <div class="mb-3">
-        <label for="ic" class="form-label">Member Number:</label>
-        <input type="text" name="ic" class="form-control" id="ic" placeholder="Library Card Num. & Member Num."
-            required>
+        <label for="sources" class="form-label">Sources:</label>
+        <select name="sources" class="form-select form-control" id="sources" aria-label="Currency">
+            {% for i in source %}
+            <option value="{{ i.name }}">{{ i.name }}</option>
+            {% endfor %}
+        </select>
     </div>
     <br />
-    <button type="submit" class="btn btn-primary">Continue</button>
+    <button type="submit" class="btn btn-primary">Save</button>
 </form>
 
 {% endblock %}
