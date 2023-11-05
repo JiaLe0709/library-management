@@ -20,7 +20,7 @@ class Books(db.Model):
     author = db.Column(db.String(150))
     isbn = db.Column(db.String(150))
     dewey = db.Column(db.String(150))
-    category = db.Column(db.String(150))
+    language = db.Column(db.String(150))
     num_pages = db.Column(db.Float(50))
     published_year = db.Column(db.Integer)
     publisher = db.Column(db.String(150))
