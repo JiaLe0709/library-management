@@ -1,1 +1,81 @@
 {% extends './layout.html' %}
+
+{% block body %}
+<div>
+    <h1>Books</h1>
+    <hr />
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'error' %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% elif category == 'success' %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    {% if not books %}
+    <h5>No book's record found, <a href="{{  url_for('books.new_books') }}">Register a book now ?</a></h5>
+    {% else %}
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Title, Language & Author</th>
+                <th scope="col">ISBN</th>
+                <th scope="col">Barcode</th>
+                <th scope="col">DDC</th>
+                <th scope="col">Publisher, Published Year</th>
+                <th scope="col">Price</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in books %}
+            <tr>    
+                <td>{{ i.title }} ({{ i.language }}) - {{ i.author }}</td>
+                <td>{{ i.isbn }}</td>
+                <td>{{ i.barcode }}</td>
+                <td>{{ i.dewey }}</td>
+                <td>{{ i.publisher }} ({{ i.published_year }})</td>
+                <td>{{ i.price }} ({{ i.currency }})</td>
+                <td>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  Delete
+                </button>
+                <a href="{{ url_for('books.update_books', books_id=i.id) }}" type="submit" class="btn btn-primary">Update</a>
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Book Record</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure you want to delete <strong class="text-danger">"{{ i.title }}" Book's Record</strong> ?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <form method="POST" action="{{ url_for('books.delete_books', books_id=i.id) }}">
+                          <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            
+            {% endfor %}
+        </tbody>
+  </table>
+        {% endif %}
+</div>
+{% endblock %}

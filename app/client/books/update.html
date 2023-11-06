@@ -1,0 +1,98 @@
+{% extends './layout.html' %}
+
+{% block body %}
+<form class="px-4 py-3" method="post" autocomplete="off">
+    <h1>Update Books Record</h1>
+    <hr />
+    <h6>Just fill in the information below and finished.</h6>
+    <br />
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'error' %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% elif category == 'success' %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="mb-3">
+        <label for="title" class="form-label">Title:</label>
+        <input type="text" name="title" value="{{ books.title }}" class="form-control" id="title" placeholder="Books Title" required>
+    </div>
+    <div class="mb-3">
+        <label for="author" class="form-label">Author:</label>
+        <input type="text" name="author"  value="{{ books.author }}" class="form-control" id="author" placeholder="Book's Author" required>
+    </div>
+    <div class="mb-3">
+        <label for="isbn" class="form-label">ISBN:</label>
+        <input type="text" name="isbn"  value="{{ books.isbn }}" class="form-control" id="isbn" placeholder="ISBN of Books" required>
+    </div>
+    <div class="mb-3">
+        <label for="pg" class="form-label">Number of Page:</label>
+        <input type="text" name="page"  value="{{ books.num_pages }}" class="form-control" id="pg" placeholder="Number of page" required>
+    </div>
+    <div class="mb-3">
+        <label for="dewey" class="form-label">Dewey: </label>
+        <select name="dewey" class="form-select" id="dewey" aria-label="Dewey Decimal Classification">
+            {% for i in dewey %}
+            <option value="{{ i.classes }}" {% if i.classes == books.dewey %} selected {% endif %}>{{ i.classes }} - {{ i.details }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <label for="publisher" class="form-label">Publisher:</label>
+    <div class="input-group mb-3">
+        <input type="text" name="pub" class="form-control" value="{{ books.publisher }}"  id="publisher" placeholder="Publisher" aria-label="Publisher" required>
+        <span class="input-group-text"> </span>
+        <input type="text" name="pub_year" value="{{ books.published_year }}" class="form-control" placeholder="Published Year" aria-label="Published Year" required>
+    </div>
+    <div class="mb-3">
+        <label for="lang" class="form-label">Language:</label>
+        <select name="lang" class="form-select form-control" id="lang" aria-label="Language">
+            {% for i in langs %}
+            <option value="{{ i.name }}" {% if i.name == books.language %} selected {% endif %} >{{ i.name }} - {{ i.native }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="summary" class="form-label text-dark">Summary:</label>
+        <textarea class="form-control" name="summary" id="summary" rows="5">{{ books.summary }}</textarea>
+      </div>
+    <div class="mb-3">
+        <label for="barcode" class="form-label">Barcode:</label>
+        <input type="text" name="barcode"  value="{{ books.barcode }}" class="form-control" id="barcode" placeholder="Barcode" required>
+    </div>
+    <label for="Currency" class="form-label">Prices (If don't have put '-'):</label>
+    <div class="input-group mb-3">
+        <select name="currency" class="form-select form-control" id="Currency" aria-label="Currency">
+            {% for i in currency_ %}
+            <option value="{{ i.symbol_native }}" {% if i.symbol_native == books.currency %} selected {% endif %} >{{ i.name }} - {{ i.symbol_native }}</option>
+            {% endfor %}
+        </select>
+        <span class="input-group-text"> </span>
+        <input type="text" name="price" value="{{ books.price }}" class="form-control" placeholder="Price" aria-label="Price">
+    </div>
+    <div class="mb-3">
+        <label for="sources" class="form-label">Sources:</label>
+        <select name="sources" class="form-select form-control" id="sources" aria-label="Currency">
+            {% for i in source %}
+            <option value="{{ i.name }}"  {% if i.name == books.sources %} selected {% endif %}>{{ i.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="sources_info" class="form-label">Sources Info:</label>
+        <input type="text" name="sources_info" value="{{ books.sources_info }}" class="form-control"  id="sources_info" placeholder="Sources Info" aria-label="Sources Info">
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+{% endblock %}
