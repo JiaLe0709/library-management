@@ -2,26 +2,27 @@
 
 {% block body %}
 <div class="px-4 py-3">
-  {% with messages = get_flashed_messages(with_categories=true) %} 
-{% if messages %} 
-{% for category, message in messages %} 
-{% if category == 'error' %}
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  {% for category, message in messages %}
+  {% if category == 'error' %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
     {{ message }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-{% elif category == 'success' %}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
+  </div>
+  {% elif category == 'success' %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
     {{ message }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-{% endif %}
-{% endfor %} 
-{% endif %} 
-{% endwith %}
-<h1>Hello, {{ current_user.username }}</h1>
-<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+  </div>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+  <h1><span id="Greeting">Hello</span>, {{ current_user.username }} !</h1>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+      aria-expanded="false">
       Dropdown button
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -30,7 +31,27 @@
       <li><a class="dropdown-item" href="#">Something else here</a></li>
     </ul>
   </div>
-aa
+  aa
 </div>
 
+{% endblock %}
+
+{% block script %}
+<script>
+  let greet = document.getElementById('Greeting')
+  let time = new Date();
+  let h = time.getHours();
+
+  if (h < 11) {
+    greet.innerHTML = 'Good morning';
+  } else if (h < 18) {
+    greet.innerHTML = 'Good afternoon';
+  } else if (h < 22) {
+    greet.innerHTML = 'Good evening';
+    console.log('Good ');
+  } else {
+    greet.innerHTML = 'Good night';
+    console.log('Good night');
+  }
+</script>
 {% endblock %}
