@@ -28,6 +28,33 @@ docker pull jiale0709/library-management
 - **Borrow Books**: Users can borrow books by providing the book's barcode.
 - **Return Books**: Users can return borrowed books.
 
+## ScreenShoot
+1. Get Started
+![image](screenshoots/init.png)
+
+2. Books
+![image](screenshoots/books_list.png)
+![image](screenshoots/del_book.png)
+![image](screenshoots/new_book1.png)
+![image](screenshoots/new_book2.png)
+![image](screenshoots/update_book.png)
+
+3. Borrow Books
+![image](screenshoots/borrow_books_books_borrowed.png)
+![image](screenshoots/borrow_books_id.png)
+![image](screenshoots/borrow_books_no_books_borrowed.png)
+
+4. Member
+![image](screenshoots/delete_mem.png)
+![image](screenshoots/mem_list.png)
+![image](screenshoots/update_mem.png)
+![image](screenshoots/new_mem.png)
+
+5. Return Books
+![image](screenshoots/return_books.png)
+
+
+
 ## Usage
 
 1. Clone the repository.
