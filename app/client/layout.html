@@ -57,6 +57,9 @@
               </ul>
             </li>
             <li class="nav-item">
+              <a class="nav-link {% if request.path == url_for('borrow.home') %}active{% endif %}" href="{{ url_for('borrow.home') }}">Borrow Books</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
             </li>
           </ul>

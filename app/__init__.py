@@ -9,6 +9,7 @@ from .auth import auth
 from .root import root
 from .member import member
 from .books import books
+from .borrow import borrow
 import os
 
 load_dotenv()
@@ -23,6 +24,7 @@ def create_app():
     app.register_blueprint(root, url_prefix='/')
     app.register_blueprint(member, url_prefix='/member')
     app.register_blueprint(books, url_prefix='/books')
+    app.register_blueprint(borrow, url_prefix='/borrow')
 
     db.init_app(app)
 
