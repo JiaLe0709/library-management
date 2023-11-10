@@ -20,6 +20,11 @@ You can also run the application using Docker.
 docker pull jiale0709/library-management
 ```
 
+## Deploy
+Here is the free instance that can host this app with (Docker)
+- [Render](render.com)
+- [Koyeb](koyeb.com)
+
 ## Features
 - **Get Started Page**: Basic initialize process to craete admin account.
 - **Admin-auth System**: Basic Admin login System
