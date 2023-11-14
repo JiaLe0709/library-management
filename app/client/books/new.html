@@ -92,6 +92,7 @@
         <input type="text" name="sources_info" class="form-control"  id="sources_info" placeholder="Sources Info" aria-label="Sources Info">
     </div>
     <br />
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <button type="submit" class="btn btn-primary">Save</button>
 </form>
 

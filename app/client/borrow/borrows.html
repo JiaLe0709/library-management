@@ -32,6 +32,7 @@
         <label for="books" class="form-label">Books Barcode:</label>
         <input type="text" name="books" class="form-control" id="books" placeholder="Books Barcode." required>
     </div>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <button type="submit" class="btn btn-primary">Continue</button>
 </form>
 <hr/>
@@ -75,6 +76,7 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                   <form method="POST" action="{{ url_for('borrow.return_book', borrowed_book_id=i.id) }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <button type="submit" class="btn btn-primary">Return</button>
                   </form>
                 </div>

@@ -31,6 +31,7 @@
         <input type="password" name="password" class="form-control" id="exampleDropdownFormPassword1"
             placeholder="Password">
     </div>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <button type="submit" class="btn btn-primary">Sign in</button>
 </form>
 {% endblock %}

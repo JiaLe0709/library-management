@@ -29,6 +29,7 @@
         <input type="text" name="brc" class="form-control" id="ic"
             placeholder="Library Card Num. & Member Num." required>
     </div>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <button type="submit" class="btn btn-primary">Continue</button>
 </form>
 {% endif %}
