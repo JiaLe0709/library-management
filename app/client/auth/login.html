@@ -1,37 +1,121 @@
-{% extends './layout.html' %}
+{% extends './auth_layout.html' %}
 
 {% block body %}
-<form class="px-4 py-3" method="post" autocomplete="off">
-    <h1>Login</h1>
-    <br />
-    {% with messages = get_flashed_messages(with_categories=true) %} 
-    {% if messages %} 
-    {% for category, message in messages %} 
-    {% if category == 'error' %}
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div id="loader">
+    <div class="spinner"></div>
+</div>
+
+<script>
+    window.addEventListener('load', function load() {
+        const loader = document.getElementById('loader');
+        setTimeout(function () {
+            loader.classList.add('fadeOut');
+        }, 300);
+    });
+</script>
+<div class="peers ai-s fxw-nw h-100vh">
+    <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv"
+        style='background-image: url("https://source.unsplash.com/random/?animal,plant,wild-life,flower,jungle,forest")'>
+
     </div>
-    {% elif category == 'success' %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style="min-width: 320px;">
+        <h4 class="fw-300 c-grey-900 mB-40">Login</h4>
+        <form method="post">
+            <div class="mb-3">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                {% if category == 'error' %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% elif category == 'success' %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
+            <div class="mb-3">
+                <label for="email" class="text-normal text-dark form-label">Email:</label>
+                <input name="email" type="email" id="email" class="form-control" placeholder="Email" autocomplete="off">
+            </div>
+            <div class="mb-3">
+                <label for="pass" class="text-normal text-dark form-label">Password:</label>
+                <input name="password" type="password" id="pass" class="form-control" placeholder="Password"
+                    autocomplete="off">
+            </div>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="">
+                <div class="peers ai-c jc-sb fxw-nw">
+                    <div class="peer">
+                        <button type="su" class="btn btn-primary btn-color">Login</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-    {% endif %}
-    {% endfor %} 
-    {% endif %} 
-    {% endwith %}
-    <div class="mb-3">
-        <label for="exampleDropdownFormEmail1" class="form-label">Email address:</label>
-        <input type="email" name="email" class="form-control" id="exampleDropdownFormEmail1"
-            placeholder="email@example.com">
-    </div>
-    <div class="mb-3">
-        <label for="exampleDropdownFormPassword1" class="form-label">Password:</label>
-        <input type="password" name="password" class="form-control" id="exampleDropdownFormPassword1"
-            placeholder="Password">
-    </div>
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-    <button type="submit" class="btn btn-primary">Sign in</button>
-</form>
+</div>
+{% endblock %}
+
+{% block head %}
+<style>
+    #loader {
+        transition: all 0.3s ease-in-out;
+        opacity: 1;
+        visibility: visible;
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        background: #fff;
+        z-index: 90000;
+    }
+
+    #loader.fadeOut {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .spinner {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: calc(50% - 20px);
+        left: calc(50% - 20px);
+        background-color: #333;
+        border-radius: 100%;
+        -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+        animation: sk-scaleout 1.0s infinite ease-in-out;
+    }
+
+    @-webkit-keyframes sk-scaleout {
+        0% {
+            -webkit-transform: scale(0)
+        }
+
+        100% {
+            -webkit-transform: scale(1.0);
+            opacity: 0;
+        }
+    }
+
+    @keyframes sk-scaleout {
+        0% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+
+        100% {
+            -webkit-transform: scale(1.0);
+            transform: scale(1.0);
+            opacity: 0;
+        }
+    }
+</style>
+<script defer="defer" src="{{ url_for('static', filename='js/main.js') }}"></script>
+<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 {% endblock %}

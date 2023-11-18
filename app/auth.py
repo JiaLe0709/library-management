@@ -25,7 +25,7 @@ def login():
                     flash('Incorrect Password and Email!', category='error')
             else:
                 flash('Incorrect Password and Email!', category='error')
-    return render_template('auth/login.html', title='Login', nav=True)
+    return render_template('auth/login.html')
 
 @auth.route('/logout', endpoint='logout')
 @init_process

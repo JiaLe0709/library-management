@@ -71,7 +71,7 @@
     </div>
   </nav>
   {% endif %}
-  <div class="container">
+  <div class="{% if container %}container{% endif %}">
     {% block body %}
     {% endblock %}
   </div>
