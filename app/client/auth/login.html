@@ -1,4 +1,5 @@
-{% extends './auth_layout.html' %}
+{% extends './layouts.html' %}
+{% block title %}Login{% endblock %}
 
 {% block body %}
 <div id="loader">
@@ -15,7 +16,7 @@
 </script>
 <div class="peers ai-s fxw-nw h-100vh">
     <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv"
-        style='background-image: url("https://source.unsplash.com/random/?animal,plant,wild-life,flower,jungle,forest")'>
+        style='background-image: url("https://source.unsplash.com/random/?wild-life")'>
 
     </div>
     <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style="min-width: 320px;">
@@ -116,6 +117,4 @@
         }
     }
 </style>
-<script defer="defer" src="{{ url_for('static', filename='js/main.js') }}"></script>
-<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 {% endblock %}

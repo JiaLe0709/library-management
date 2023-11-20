@@ -98,5 +98,4 @@ Feel free to contribute to the project by opening issues or submitting pull requ
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Todo
-1. Add UI in dashboard home page.
-2. Graph UI to show the analytics.
+1. Graph UI to show the analytics.

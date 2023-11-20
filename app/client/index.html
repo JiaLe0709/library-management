@@ -1,4 +1,5 @@
-{% include 'layout.html' %}
+{% extends 'dash_layouts.html' %}
+{% block title %}Home{% endblock %}
 
 {% block body %}
 <div class="px-4 py-3">
@@ -36,7 +37,6 @@
     greet.innerHTML = 'Good afternoon';
   } else if (h < 22) {
     greet.innerHTML = 'Good evening';
-    console.log('Good ');
   } else {
     greet.innerHTML = 'Good night';
     console.log('Good night');

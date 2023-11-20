@@ -1,36 +1,46 @@
-{% extends './layout.html' %}
+{% extends './dash_layouts.html' %}
+{% block title %}Borrow Books{% endblock %}
 
 {% block body %}
-<br/>
-<h1><u>Borrow Books</u></h1>
-<h6>Please enter the member card ID.</h6>
-<hr/>
-{% with messages = get_flashed_messages(with_categories=true) %} 
-    {% if messages %} 
-    {% for category, message in messages %} 
-    {% if category == 'error' %}
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="container-fluid">
+    <h4 class="c-grey-900 mT-10 mB-30">Borrow Books</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="bgc-white bd bdrs-3 p-20 mB-20">
+                <h4 class="c-grey-900 mB-20">Borrow Books</h4>
+                <form class="" method="post" autocomplete="off">
+                    <h6>Please enter the member card ID.</h6>
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    {% if category == 'error' %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% elif category == 'success' %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    {% if not member %}
+                    <form method="post" class="px-4 py-3" autocomplete="off">
+                        <div class="mb-3">
+                            <label for="ic" class="form-label">Member Number:</label>
+                            <input type="text" name="brc" class="form-control" id="ic"
+                                placeholder="Library Card Num. & Member Num." required>
+                        </div>
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="btn btn-primary">Continue</button>
+                    </form>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
     </div>
-    {% elif category == 'success' %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endif %}
-    {% endfor %} 
-    {% endif %} 
-    {% endwith %}
-{% if not member %}
-<form method="post"  class="px-4 py-3" autocomplete="off">
-    <div class="mb-3">
-        <label for="ic" class="form-label">Member Number:</label>
-        <input type="text" name="brc" class="form-control" id="ic"
-            placeholder="Library Card Num. & Member Num." required>
-    </div>
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-    <button type="submit" class="btn btn-primary">Continue</button>
-</form>
-{% endif %}
+</div>
 {% endblock %}

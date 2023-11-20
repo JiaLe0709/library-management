@@ -49,7 +49,7 @@ def delete_member(member_id):
             db.session.commit()
             flash('Member deleted successfully!', category='success')
         except:
-            flash('Failed to delete the member!', category='error')
+            flash('Failed to delete the member! (Please check if got books have not returned will failed !)', category='error')
     else:
         flash('Member not found!', category='error')
 

@@ -1,57 +1,61 @@
-{% extends './layout.html' %}
+{% extends './dash_layouts.html' %}
+{% block title %}Create New Member{% endblock %}
 
 {% block body %}
-<form class="px-4 py-3" method="post" autocomplete="off">
-    <h1>Create New Member</h1>
-    <hr />
-    <h6>Just fill in the information below and finished.</h6>
-    <br />
-    <h1>Information needed</h1>
-    <hr />
-    <h6>Please provide the following information.</h6>
-    <br />
-    {% with messages = get_flashed_messages(with_categories=true) %} 
-    {% if messages %} 
-    {% for category, message in messages %} 
-    {% if category == 'error' %}
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="container-fluid">
+    <h4 class="c-grey-900 mT-10 mB-30">Members</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="bgc-white bd bdrs-3 p-20 mB-20">
+                <h4 class="c-grey-900 mB-20">Create a new members</h4>
+                <form class="" method="post" autocomplete="off">
+                    <h6>Please provide the following information.</h6>
+                    <br />
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    {% if category == 'error' %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% elif category == 'success' %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="John" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Gender: </label>
+                        <select name="gender" class="form-select" aria-label="Default select example">
+                            {% for o in gender %}
+                            <option value="{{ o.name }}">{{ o.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Class / Category:</label>
+                        <input type="text" name="category" class="form-control" id="category"
+                            placeholder="Class & Category" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ic" class="form-label">Member Number:</label>
+                        <input type="text" name="ic" class="form-control" id="ic"
+                            placeholder="Library Card Num. & Member Num." required>
+                    </div>
+                    <br />
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn btn-primary">Continue</button>
+                </form>
+            </div>
+        </div>
     </div>
-    {% elif category == 'success' %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endif %}
-    {% endfor %} 
-    {% endif %} 
-    {% endwith %}
-    <div class="mb-3">
-        <label for="name" class="form-label">Name:</label>
-        <input type="text" name="name" class="form-control" id="name"
-            placeholder="John" required>
-    </div>
-    <div class="mb-3">
-        <label for="name" class="form-label">Gender: </label>
-        <select name="gender" class="form-select" aria-label="Default select example">
-             {% for o in gender %}
-              <option value="{{ o.name }}">{{ o.name }}</option>
-              {% endfor %}
-          </select>
-    </div>
-    <div class="mb-3">
-        <label for="category" class="form-label">Class / Category:</label>
-        <input type="text" name="category" class="form-control" id="category"
-            placeholder="Class & Category" required>
-    </div>
-    <div class="mb-3">
-        <label for="ic" class="form-label">Member Number:</label>
-        <input type="text" name="ic" class="form-control" id="ic"
-            placeholder="Library Card Num. & Member Num." required>
-    </div>
-    <br />
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-    <button type="submit" class="btn btn-primary">Continue</button>
-</form>
+</div>
 {% endblock %}

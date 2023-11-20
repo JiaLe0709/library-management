@@ -1,54 +1,77 @@
-{% extends './layout.html' %}
+{% extends './layouts.html' %}
+{% block title %}Get Started{% endblock %}
 
 {% block body %}
-<form class="px-4 py-3" method="post" autocomplete="off">
-    <h1>Get Started</h1>
-    <hr />
-    <h6>Welcome to the get started initialze process ! Just fill in the information below and get started.</h6>
-    <br />
-    <h1>Information needed</h1>
-    <hr />
-    <h6>Please provide the following information.</h6>
-    <br />
-    {% with messages = get_flashed_messages(with_categories=true) %} 
-    {% if messages %} 
-    {% for category, message in messages %} 
-    {% if category == 'error' %}
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div id="loader">
+    <div class="spinner"></div>
+</div>
+
+<script>
+    window.addEventListener('load', function load() {
+        const loader = document.getElementById('loader');
+        setTimeout(function () {
+            loader.classList.add('fadeOut');
+        }, 300);
+    });
+</script>
+
+<div class="peers ai-s fxw-nw h-100vh">
+    <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv"
+        style='background-image: url("https://source.unsplash.com/random/?wild-life")'>
+
     </div>
-    {% elif category == 'success' %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style="min-width: 320px;">
+        <h4 class="fw-300 c-grey-900 mB-40">Get Started</h4>
+        <form method="post">
+            <div class="mb-3">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                {% if category == 'error' %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% elif category == 'success' %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
+            <div class="mb-3">
+                <label for="exampleDropdownFormEmail1" class="form-label">Email address:</label>
+                <input type="email" name="email" class="form-control" id="exampleDropdownFormEmail1"
+                    placeholder="email@example.com" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleDropdownFormEmail1" class="form-label">Username:</label>
+                <input type="text" name="name" class="form-control" id="exampleDropdownFormEmail1"
+                    placeholder="Username" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleDropdownFormPassword1" class="form-label">Password:</label>
+                <input type="password" name="password" class="form-control" id="exampleDropdownFormPassword1"
+                    placeholder="Password" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleDropdownFormPassword2" class="form-label">Comfirm Password:</label>
+                <input type="password" name="password2" class="form-control" id="exampleDropdownFormPassword2"
+                    placeholder="Comfirm Password" required>
+            </div>
+            <br />
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="">
+                <div class="peers ai-c jc-sb fxw-nw">
+                    <div class="peer">
+                        <button type="su" class="btn btn-primary btn-color">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-    {% endif %}
-    {% endfor %} 
-    {% endif %} 
-    {% endwith %}
-    <div class="mb-3">
-        <label for="exampleDropdownFormEmail1" class="form-label">Email address:</label>
-        <input type="email" name="email" class="form-control" id="exampleDropdownFormEmail1"
-            placeholder="email@example.com" required>
-    </div>
-    <div class="mb-3">
-        <label for="exampleDropdownFormEmail1" class="form-label">Username:</label>
-        <input type="text" name="name" class="form-control" id="exampleDropdownFormEmail1"
-            placeholder="Username" required>
-    </div>
-    <div class="mb-3">
-        <label for="exampleDropdownFormPassword1" class="form-label">Password:</label>
-        <input type="password" name="password" class="form-control" id="exampleDropdownFormPassword1"
-            placeholder="Password" required>
-    </div>
-    <div class="mb-3">
-        <label for="exampleDropdownFormPassword2" class="form-label">Comfirm Password:</label>
-        <input type="password" name="password2" class="form-control" id="exampleDropdownFormPassword2"
-            placeholder="Comfirm Password" required>
-    </div>
-    <br />
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-    <button type="submit" class="btn btn-primary">Continue</button>
-</form>
+</div>
 {% endblock %}
