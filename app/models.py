@@ -8,6 +8,10 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
 
+class Settings(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    fine_price = db.Column(db.String(150), unique=True, server_default='1.00')
+
 class Member(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))

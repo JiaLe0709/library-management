@@ -59,6 +59,7 @@
               <th>Barcode</th>
               <th>Borrow Date</th>
               <th>Return Date</th>
+              <th>Fined</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -69,6 +70,7 @@
               <td>{{ i.book.barcode }}</td>
               <td>{{ i.borrow_date.strftime('%Y-%m-%d') }}</td>
               <td>{{ i.return_date.strftime('%Y-%m-%d') }}</td>
+              <td>{{ i.fine }}</td>
               <td>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                   Return

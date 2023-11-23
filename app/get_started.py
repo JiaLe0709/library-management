@@ -27,4 +27,4 @@ def get_started():
                 return redirect(url_for('root.home'))
             except:
                 flash('Failed to Create an account !', category='error')
-    return render_template('installation/get-started.html', title='Get Started', nav=True)
+    return render_template('setup/get-started.html')

@@ -9,7 +9,13 @@ root = Blueprint('root', __name__, template_folder='client', static_folder='stat
 @init_process
 @login_required
 def home():
-    return render_template('index.html', title='Home', nav=True)
+    return render_template('index.html')
+
+@root.route('/settings', endpoint='settings')
+@init_process
+@login_required
+def settings():
+   return render_template('setup/settings.html')
 
 @root.route('/favicon.ico')
 def favicon():

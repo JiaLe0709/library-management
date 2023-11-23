@@ -117,6 +117,14 @@
                         </li>
                     </ul> 
                 </li>
+                <li class="nav-item">
+                    <a class="sidebar-link" href="{{ url_for('root.settings') }}">
+                        <span class="icon-holder">
+                            <i class="c-teal-500 ti-settings"></i>
+                        </span>
+                        <span class="title {% if request.path == url_for('root.settings') %}activated{% endif %}">Settings</span>
+                    </a>
+                </li>
                 <li class="nav-item mT-30 actived">
                     <a class="sidebar-link" href="{{ url_for('auth.logout') }}">
                         <span class="icon-holder">
@@ -150,13 +158,13 @@
                             </div>
                         </a>
                         <ul class="dropdown-menu fsz-sm">
-                            <!--li>
-                                <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                            <li>
+                                <a href="{{ url_for('root.settings') }}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                                     <i class="ti-settings mR-10"></i>
                                     <span>Setting</span>
                                 </a>
                             </li>
-                            <li>
+                            <!--li>
                                 <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                                     <i class="ti-user mR-10"></i>
                                     <span>Profile</span>

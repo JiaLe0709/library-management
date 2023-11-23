@@ -4,6 +4,7 @@ from utils.init_function import init_process
 from .models import Member, Books, BorrowedBook
 from utils.fine import calculate_fine
 from .database import db
+from datetime import datetime
 
 borrow = Blueprint('borrow', __name__, template_folder="client", static_folder="static")
 
@@ -37,13 +38,19 @@ def borrow_book():
 @login_required
 def borrow_books(member_id):
     member = Member.query.get(member_id)
-
+    current_datetime = datetime.utcnow()
+    print(int(current_datetime.strftime('%d')))
     if not member:
         flash("Member not found.", category='error')
         return redirect(url_for('borrow.home'))
 
     books = BorrowedBook.query.filter_by(member_id=member_id).all()
-    fine_amount = sum(calculate_fine(b.return_date) for b in books)
+    
+    fine_list = [int(current_datetime.strftime('%d')) - int(b.return_date.strftime('%d')) for b in books]
+    for i, b in enumerate(books):
+        b.fine = fine_list[i]
+
+
     if request.method == 'POST':
         if len(books) >= 2:
             flash("You have reached the maximum number of borrowed books (2 books per member).", category='error')
@@ -67,7 +74,7 @@ def borrow_books(member_id):
             else:
                 flash("Books Barcode Not Found!", category='error')
 
-    return render_template('borrow/borrows.html', nav=True, title='Borrow Books', member=member, books=books, fine=fine_amount)
+    return render_template('borrow/borrows.html', nav=True, title='Borrow Books', member=member, books=books, fine=fine_list, datetime=current_datetime)
 
 @borrow.route('/return_book/<int:borrowed_book_id>',endpoint='return_book' ,methods=['POST'])
 @init_process
