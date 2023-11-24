@@ -51,8 +51,10 @@
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                   Delete
                 </button>
-                <a href="{{ url_for('member.update_member', member_id=i.id) }}" type="submit"
+                <a href="{{ url_for('member.update_member', member_id=i.id) }}"
                   class="btn btn-primary">Update</a>
+                <a href="{{ url_for('borrow.borrow_books', member_id=i.id) }}"
+                  class="btn btn-info">Borrow</a>
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                   tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered">

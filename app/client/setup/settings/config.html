@@ -1,0 +1,24 @@
+<div class="masonry-item col-md-6">
+    <div class="bgc-white p-20 bd">
+        <h6 class="c-grey-900">Config</h6>
+        <div class="mT-30">
+            <form method="post" action="{{ url_for('root.config') }}">
+                <div class="mb-3 row">
+                    <label for="inputEmail3" class="form-label col-sm-2 col-form-label">Deploy Hook:</label>
+                    <div class="col-sm-10">
+                        <input type="text" value="{{ config.deploy_hook }}"  name="hook" autocomplete="off" class="form-control" id="inputEmail3" placeholder="Deploy hook">
+                    </div>
+                    <label for="inputEmail2" class="form-label col-sm-2 col-form-label">Price of Fined:</label>
+                    <div class="col-sm-10">
+                        <input type="text" value="{{ config.fine_price }}" name="fined" autocomplete="off" class="form-control" id="inputEmail2" placeholder="Price of Fined">
+                    </div>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                </div>
+                <div class="mb-3 row">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary btn-color">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
