@@ -1,0 +1,63 @@
+{
+  "name": "Library management",
+  "manifest_version": 3,
+  "short_name": "Library management",
+  "start_url": "/",
+  "author": "Jia Le",
+  "description": "A Library management system.",
+  "developer": {
+      "name": "Jia Le",
+      "url": "https://github.com/JiaLe0709"
+  },
+  "display": "standalone",
+  "background_color": "#222222",
+  "theme_color": "#181818",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "pwa/icon-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+      },
+      {
+      "src": "pwa/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+      },
+      {
+      "src": "pwa/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+      },
+      {
+      "src": "pwa/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+      },
+      {
+      "src": "pwa/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+      },
+      {
+      "src": "pwa/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+      },
+      {
+      "src": "pwa/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+      },
+      {
+      "src": "pwa/icon-284x284.png",
+      "sizes": "284x284",
+      "type": "image/png"
+      },
+      {
+      "src": "pwa/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+      }
+  ]
+}

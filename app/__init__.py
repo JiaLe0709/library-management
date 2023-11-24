@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_minify import Minify
+from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect
 from dotenv import load_dotenv
 from .database import db 
@@ -37,6 +38,8 @@ def create_app():
 
     csrf = CSRFProtect()
     csrf.init_app(app)
+
+    CORS(app)
 
     with app.app_context():
         db.create_all()
