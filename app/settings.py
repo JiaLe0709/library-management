@@ -8,7 +8,8 @@ import requests as rq
 settings = Blueprint('settings', __name__, template_folder='client', static_folder='static')
 
 @settings.route('/settings', endpoint='home')
-
+@init_process
+@login_required
 def home():
    config = Settings.query.filter_by(id=1).first()
    return render_template('setup/settings.html', config=config)
@@ -44,5 +45,7 @@ def config():
    return redirect(url_for('settings.home'))
 
 @settings.route('/redeploy', methods=['POST'], endpoint='redeploy')
+@init_process
+@login_required
 def redeploy():
   return redirect(url_for('settings.home'))
