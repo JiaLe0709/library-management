@@ -2,41 +2,27 @@
 {% block title %}Settings{% endblock %}
 
 {% block body %}
-<div class="masonry-item col-md-6">
-  <div class="bgc-white p-20 bd">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    {% for category, message in messages %}
-    {% if category == 'error' %}
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      {{ message }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% elif category == 'success' %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      {{ message }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
-    <h6 class="c-grey-900">Change Password</h6>
-    <div class="mT-30">
-      <form method="post" action="{{ url_for('auth.change_pass') }}">
-        <div class="mb-3">
-          <label class="form-label" for="exampleInputEmail1">Current Password:</label>
-          <input autocomplete="off"  type="text" name="current_password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-            placeholder="Current Password">
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="exampleInputPassword1">New Password:</label>
-          <input autocomplete="off" type="text" name="new_password" class="form-control" id="exampleInputPassword1" placeholder="New Password">
-        </div>
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <button type="submit" class="btn btn-primary btn-color">Change Password</button>
-      </form>
-    </div>
-  </div>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+{% if category == 'error' %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% elif category == 'success' %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endwith %}
+<div class="row gap-20 masonry pos-r">
+  <div class="masonry-sizer col-md-6"></div>
+  {% include './setup/settings/change_password.html' %}
+  {% include './setup/settings/config.html' %}
+  {% include './setup/settings/redeploy.html' %}
 </div>
 {% endblock %}

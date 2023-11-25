@@ -10,6 +10,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script defer="defer" src="https://cdn.jsdelivr.net/gh/JiaLe0709/cdn@latest/js/lms.min.js"></script>
     <link href="https://cdn.jsdelivr.net/gh/JiaLe0709/cdn@latest/css/lms.min.css" rel="stylesheet">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}" />
     <style>
         .activated {
             color: #313435
@@ -118,11 +119,11 @@
                     </ul> 
                 </li>
                 <li class="nav-item">
-                    <a class="sidebar-link" href="{{ url_for('root.settings') }}">
+                    <a class="sidebar-link" href="{{ url_for('settings.home') }}">
                         <span class="icon-holder">
                             <i class="c-teal-500 ti-settings"></i>
                         </span>
-                        <span class="title {% if request.path == url_for('root.settings') %}activated{% endif %}">Settings</span>
+                        <span class="title {% if request.path == url_for('settings.home') %}activated{% endif %}">Settings</span>
                     </a>
                 </li>
                 <li class="nav-item mT-30 actived">
@@ -159,7 +160,7 @@
                         </a>
                         <ul class="dropdown-menu fsz-sm">
                             <li>
-                                <a href="{{ url_for('root.settings') }}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                                <a href="{{ url_for('settings.home') }}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                                     <i class="ti-settings mR-10"></i>
                                     <span>Setting</span>
                                 </a>

@@ -10,7 +10,8 @@ class User(db.Model, UserMixin):
 
 class Settings(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    fine_price = db.Column(db.String(150), unique=True, server_default='1.00')
+    fine_price = db.Column(db.Float(50), unique=True, server_default='1.00')
+    deploy_hook = db.Column(db.String(150))
 
 class Member(db.Model):
     id = db.Column(db.Integer, primary_key=True)

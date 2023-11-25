@@ -55,8 +55,8 @@ def change_pass():
                 return redirect(url_for('auth.logout'))
             except:
                 flash('Failed to change the password!', category='error')
-                return redirect(url_for('root.settings'))
+                return redirect(url_for('settings.home'))
         else:
             flash('Incorrect Passwordl!', category='error')
-            return redirect(url_for('root.settings'))
-    return redirect(url_for('root.settings'))
+            return redirect(url_for('settings.home'))
+    return redirect(url_for('settings.home'))

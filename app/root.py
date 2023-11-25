@@ -11,12 +11,6 @@ root = Blueprint('root', __name__, template_folder='client', static_folder='stat
 def home():
     return render_template('index.html')
 
-@root.route('/settings', endpoint='settings')
-@init_process
-@login_required
-def settings():
-   return render_template('setup/settings.html')
-
 @root.route('/favicon.ico')
 def favicon():
   return send_from_directory(os.path.join(root.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
