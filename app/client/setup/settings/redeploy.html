@@ -1,0 +1,18 @@
+<div class="masonry-item col-md-6">
+    <div class="bgc-white p-20 bd">
+        <h6 class="c-grey-900">Redeploy</h6>
+        <div class="mT-30">
+            <form class="container" method="post" action="{{ config.deploy_hook }}">
+                <fieldset disabled="disabled">
+                    <div class="mb-3">
+                        <label class="form-label" for="disabledTextInput">Current Hook:</label>
+                        <input type="text" id="disabledTextInput" class="form-control" value="{{ config.deploy_hook }}"
+                            placeholder="{{ config.deploy_hook }}">
+                    </div>
+                </fieldset>
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button class="btn btn-primary btn-color" type="submit">Redeploy</button>
+            </form>
+        </div>
+    </div>
+</div>

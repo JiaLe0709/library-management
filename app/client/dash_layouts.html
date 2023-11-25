@@ -119,11 +119,11 @@
                     </ul> 
                 </li>
                 <li class="nav-item">
-                    <a class="sidebar-link" href="{{ url_for('root.settings') }}">
+                    <a class="sidebar-link" href="{{ url_for('settings.home') }}">
                         <span class="icon-holder">
                             <i class="c-teal-500 ti-settings"></i>
                         </span>
-                        <span class="title {% if request.path == url_for('root.settings') %}activated{% endif %}">Settings</span>
+                        <span class="title {% if request.path == url_for('settings.home') %}activated{% endif %}">Settings</span>
                     </a>
                 </li>
                 <li class="nav-item mT-30 actived">
@@ -160,7 +160,7 @@
                         </a>
                         <ul class="dropdown-menu fsz-sm">
                             <li>
-                                <a href="{{ url_for('root.settings') }}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                                <a href="{{ url_for('settings.home') }}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                                     <i class="ti-settings mR-10"></i>
                                     <span>Setting</span>
                                 </a>

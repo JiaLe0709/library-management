@@ -19,6 +19,10 @@
 {% endfor %}
 {% endif %}
 {% endwith %}
-{% include './setup/settings/change_password.html' %}
-{% include './setup/settings/config.html' %}
+<div class="row gap-20 masonry pos-r">
+  <div class="masonry-sizer col-md-6"></div>
+  {% include './setup/settings/change_password.html' %}
+  {% include './setup/settings/config.html' %}
+  {% include './setup/settings/redeploy.html' %}
+</div>
 {% endblock %}
