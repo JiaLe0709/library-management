@@ -1,6 +1,6 @@
 # Library Management
 
-This is a simple library management system implemented in Python Flask and Bootstrap CSS. The application allows users to borrow and return books, keeps track of borrowed books and more.
+This is a simple library management system implemented in Python Flask, Bootstrap CSS and Colorlib admin dashboard template. The application allows users to borrow and return books, keeps track of borrowed books and more.
 
 ## Setup
 
@@ -9,8 +9,36 @@ This is a simple library management system implemented in Python Flask and Boots
 Before running the application, make sure to set the environment variable for the database URI. You can use a free database like Supabase.
 
 ```bash
-export DB=<your_database_uri>
+DB=<your_database_uri-postgresql>
+ALLOW_UP=True or Flase
 ```
+
+- DB = Is for your database uri
+- ALLOW_UP = Is it allow for update password
+
+## Common Error
+
+1. When you deploy this application, if you are using postgres database you may meet this problem:
+
+```
+sqlalchemy.exc.NoSuchModuleError: Can't load plugin: sqlalchemy.dialects:postgres
+```
+
+### Way to Solve
+
+- You can try to change ```postgres://``` to ```postgresql://```.
+- ref: https://stackoverflow.com/questions/62688256/sqlalchemy-exc-nosuchmoduleerror-cant-load-plugin-sqlalchemy-dialectspostgre
+
+
+2. **In Production** sometimes you may get **Internal Server Error (http:500)**, It Basically is this error:
+
+```
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) SSL connection has been closed unexpectedly
+```
+### Way to Solve
+
+- You may just **refresh** the page and try again. 
+- You can also **change another database provider.**
 
 ### Docker
 
@@ -34,8 +62,9 @@ Here is the free instance that can host this app with (Docker)
 - **Return Books**: Users can return borrowed books.
 
 ## ScreenShoot
-1. Get Started
-![image](screenshoots/init.png)
+1. Get Started & Authentication
+![Get Started](screenshoots/get-started.png)
+![Alt text](screenshoots/login.png)
 
 2. Books
 ![image](screenshoots/books_list.png)
@@ -78,8 +107,12 @@ pip install -r requirements.txt
 3. Set the environment variable for the database URI.
 
 ```bash
-export DB=<your_database_uri>
+DB=<your_database_uri-postgresql>
+ALLOW_UP=True or Flase
 ```
+
+- DB = Is for your database uri
+- ALLOW_UP = Is it allow for update password
 
 4. Run the Flask application.
 

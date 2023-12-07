@@ -22,6 +22,7 @@ def create_app():
     app.config['SECRET_KEY'] = os.urandom(32)
     app.config['WTF_CSRF_SECRET_KEY'] = os.urandom(32)
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DB')
+    app.config['ALLOW_UPDATE_PASSWORD'] = os.getenv('ALLOW_UP')
     app.config['WTF_CSRF_CHECK_DEFAULT'] = True
     
     app.register_blueprint(init, url_prefix='/') 

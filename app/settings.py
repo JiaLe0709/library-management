@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, Blueprint, request, flash
+from flask import render_template, redirect, url_for, Blueprint, request, flash, current_app
 from flask_login import login_required
 from utils.init_function import init_process
 from .models import Settings
@@ -11,8 +11,10 @@ settings = Blueprint('settings', __name__, template_folder='client', static_fold
 @init_process
 @login_required
 def home():
-   config = Settings.query.filter_by(id=1).first()
-   return render_template('setup/settings.html', config=config)
+  config = Settings.query.filter_by(id=1).first()
+  aup = current_app.config['ALLOW_UPDATE_PASSWORD']
+  print(aup)
+  return render_template('setup/settings.html', config=config, aup=aup)
 
 @settings.route('/config', methods=['POST'], endpoint='config')
 @init_process

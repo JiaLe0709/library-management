@@ -35,28 +35,34 @@ def logout():
     logout_user()
     flash('Logged Out!', category='success')
     return redirect(url_for('auth.login'))
-    
+
 @auth.route('/change-password', endpoint='change_pass', methods=['POST'])
 @init_process
 @login_required
 def change_pass():
     if request.method == 'POST':
-        current_password = request.form.get('current_password')
+        form_current_password = request.form.get('current_password')
         new_password = request.form.get('new_password')
 
+        if form_current_password is '' or new_password is '':
+            flash('Invalid form data!', category='error')
+            return redirect(url_for('settings.home'))
+
         user = User.query.filter_by(email=current_user.email).first()
-        check_pass = check_password_hash(password=current_user.password, pwhash='pbkdf2')
-        currc_pass = check_password_hash(password=current_password, pwhash='pbkdf2')
-        if check_pass == currc_pass:
+        check_pass = check_password_hash(user.password, form_current_password)
+
+        if check_pass == form_current_password:
             try:
                 user.password = generate_password_hash(new_password, method='pbkdf2', salt_length=16)
                 db.session.commit()
-                flash("You've change the password successfully!", category='success')
+                flash("You've changed the password successfully!", category='success')
                 return redirect(url_for('auth.logout'))
             except:
-                flash('Failed to change the password!', category='error')
+                flash(f'Failed to change the password', category='error')
                 return redirect(url_for('settings.home'))
         else:
-            flash('Incorrect Passwordl!', category='error')
+            flash('Incorrect Password!', category='error')
             return redirect(url_for('settings.home'))
+
+    flash('Invalid request method!', category='error')
     return redirect(url_for('settings.home'))
