@@ -44,7 +44,7 @@ def change_pass():
         form_current_password = request.form.get('current_password')
         new_password = request.form.get('new_password')
 
-        if form_current_password is '' or new_password is '':
+        if form_current_password == '' or new_password == '':
             flash('Invalid form data!', category='error')
             return redirect(url_for('settings.home'))
 
